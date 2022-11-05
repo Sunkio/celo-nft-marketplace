@@ -55,41 +55,39 @@ export default function Home() {
     }
   }, []);
 
-  return (
-    <>
-      {/* Add Navbar to homepage */}
-      <Navbar />
+  return <>
+    {/* Add Navbar to homepage */}
+    <Navbar />
 
-      {/* Show loading status if query hasn't responded yet */}
-      {loading && isConnected && <span>Loading...</span>}
+    {/* Show loading status if query hasn't responded yet */}
+    {loading && isConnected && <span>Loading...</span>}
 
-      {/* Render the listings */}
-      <div className={styles.container}>
-        {!loading &&
-          listings &&
-          listings.map((listing) => {
-            return (
-              <Link
-                key={listing.id}
-                href={`/${listing.nftAddress}/${listing.tokenId}`}
-              >
-                <a>
-                  <Listing
-                    nftAddress={listing.nftAddress}
-                    tokenId={listing.tokenId}
-                    price={listing.price}
-                    seller={listing.seller}
-                  />
-                </a>
-              </Link>
-            );
-          })}
-      </div>
+    {/* Render the listings */}
+    <div className={styles.container}>
+      {!loading &&
+        listings &&
+        listings.map((listing) => {
+          return (
+            (<Link
+              key={listing.id}
+              href={`/${listing.nftAddress}/${listing.tokenId}`}
+            >
 
-      {/* Show "No listings found" if query returned empty */}
-      {!loading && listings && listings.length === 0 && (
-        <span>No listings found</span>
-      )}
-    </>
-  );
+              <Listing
+                nftAddress={listing.nftAddress}
+                tokenId={listing.tokenId}
+                price={listing.price}
+                seller={listing.seller}
+              />
+
+            </Link>)
+          );
+        })}
+    </div>
+
+    {/* Show "No listings found" if query returned empty */}
+    {!loading && listings && listings.length === 0 && (
+      <span>No listings found</span>
+    )}
+  </>;
 }

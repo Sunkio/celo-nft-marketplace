@@ -96,51 +96,49 @@ export default function Create() {
     await createListingTxn.wait();
   }
 
-  return (
-    <>
-      {/* Show the navigation bar */}
-      <Navbar />
+  return <>
+    {/* Show the navigation bar */}
+    <Navbar />
 
-      {/* Show the input fields for the user to enter contract details */}
-      <div className={styles.container}>
-        <input
-          type="text"
-          placeholder="NFT Address 0x..."
-          value={nftAddress}
-          onChange={(e) => setNftAddress(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Token ID"
-          value={tokenId}
-          onChange={(e) => setTokenId(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Price (in CELO)"
-          value={price}
-          onChange={(e) => {
-            if (e.target.value === "") {
-              setPrice("0");
-            } else {
-              setPrice(e.target.value);
-            }
-          }}
-        />
-        {/* Button to create the listing */}
-        <button onClick={handleCreateListing} disabled={loading}>
-          {loading ? "Loading..." : "Create"}
-        </button>
+    {/* Show the input fields for the user to enter contract details */}
+    <div className={styles.container}>
+      <input
+        type="text"
+        placeholder="NFT Address 0x..."
+        value={nftAddress}
+        onChange={(e) => setNftAddress(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Token ID"
+        value={tokenId}
+        onChange={(e) => setTokenId(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Price (in CELO)"
+        value={price}
+        onChange={(e) => {
+          if (e.target.value === "") {
+            setPrice("0");
+          } else {
+            setPrice(e.target.value);
+          }
+        }}
+      />
+      {/* Button to create the listing */}
+      <button onClick={handleCreateListing} disabled={loading}>
+        {loading ? "Loading..." : "Create"}
+      </button>
 
-        {/* Button to take user to the NFT details page after listing is created */}
-        {showListingLink && (
-          <Link href={`/${nftAddress}/${tokenId}`}>
-            <a>
-              <button>View Listing</button>
-            </a>
-          </Link>
-        )}
-      </div>
-    </>
-  );
+      {/* Button to take user to the NFT details page after listing is created */}
+      {showListingLink && (
+        (<Link href={`/${nftAddress}/${tokenId}`}>
+
+          <button>View Listing</button>
+
+        </Link>)
+      )}
+    </div>
+  </>;
 }
