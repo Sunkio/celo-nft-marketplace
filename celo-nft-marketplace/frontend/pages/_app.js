@@ -58,3 +58,5 @@ const celoChain = {
 	  </WagmiConfig>
 	);
   }
+
+export default MyApp; 
